@@ -11,12 +11,16 @@ export const userSignUp = catchAsync(
     if (!email || !password) {
       throw new AppError("Email and password are required", 400);
     }
-    const user = await db.user.create({
-      data: {
-        email,
-        password: await bcrypt.hash(password, 10),
-      },
-    });
+    const user = await db.user
+      .create({
+        data: {
+          email,
+          password: await bcrypt.hash(password, 10),
+        },
+      })
+      .catch((e) => {
+        throw new AppError("User already exists", 400);
+      });
 
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET!, {
       expiresIn: "1d",

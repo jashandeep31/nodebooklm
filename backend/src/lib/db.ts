@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { ChromaClient } from "chromadb";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -16,3 +17,5 @@ if (process.env.NODE_ENV === "production") {
 }
 
 export const db = prisma;
+
+export const chroma = new ChromaClient({ path: "http://localhost:8001" });

@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Chat from "./pages/Chat";
+import CreateChat from "./pages/CreateChat";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={<CreateChat />} />
+          <Route path="/chat/:id" element={<Chat />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>

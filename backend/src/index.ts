@@ -4,6 +4,7 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import userRoutes from "./routes/user.routes";
 import { AppError } from "./lib/appError";
+import chatRoutes from "./routes/chat.routes";
 
 const PORT = process.env.PORT || 8000;
 
@@ -23,6 +24,11 @@ app.use((err: AppError, req: Request, res: Response, next: any) => {
   });
 });
 
+app.use("/api/v1/chat", chatRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// docker pull chromadb/chroma
+// docker run -p 8001:8000 chromadb/chroma
